@@ -45,7 +45,9 @@ export function parseTime(time, cFormat) {
   const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
     const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
-    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ] }
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value]
+    }
     return value.toString().padStart(2, '0')
   })
   return time_str
@@ -82,14 +84,14 @@ export function formatTime(time, option) {
   } else {
     return (
       d.getMonth() +
-      1 +
-      '月' +
-      d.getDate() +
-      '日' +
-      d.getHours() +
-      '时' +
-      d.getMinutes() +
-      '分'
+            1 +
+            '月' +
+            d.getDate() +
+            '日' +
+            d.getHours() +
+            '时' +
+            d.getMinutes() +
+            '分'
     )
   }
 }
@@ -227,8 +229,8 @@ export function toggleClass(element, className) {
     classString += '' + className
   } else {
     classString =
-      classString.substr(0, nameIndex) +
-      classString.substr(nameIndex + className.length)
+            classString.substr(0, nameIndex) +
+            classString.substr(nameIndex + className.length)
   }
   element.className = classString
 }

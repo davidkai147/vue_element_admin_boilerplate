@@ -1,18 +1,24 @@
 <template>
   <div class="upload-container">
-    <el-button :style="{background:color,borderColor:color}" icon="el-icon-upload" size="mini" type="primary" @click=" dialogVisible=true">
+    <el-button
+      :style="{background:color,borderColor:color}"
+      icon="el-icon-upload"
+      size="mini"
+      type="primary"
+      @click=" dialogVisible=true"
+    >
       upload
     </el-button>
     <el-dialog :visible.sync="dialogVisible">
       <el-upload
-        :multiple="true"
+        :before-upload="beforeUpload"
         :file-list="fileList"
-        :show-file-list="true"
+        :multiple="true"
         :on-remove="handleRemove"
         :on-success="handleSuccess"
-        :before-upload="beforeUpload"
-        class="editor-slide-upload"
+        :show-file-list="true"
         action="https://httpbin.org/post"
+        class="editor-slide-upload"
         list-type="picture-card"
       >
         <el-button size="small" type="primary">
@@ -92,7 +98,12 @@ export default {
         const img = new Image()
         img.src = _URL.createObjectURL(file)
         img.onload = function() {
-          _self.listObj[fileName] = { hasSuccess: false, uid: file.uid, width: this.width, height: this.height }
+          _self.listObj[fileName] = {
+            hasSuccess: false,
+            uid: file.uid,
+            width: this.width,
+            height: this.height
+          }
         }
         resolve(true)
       })
@@ -102,10 +113,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.editor-slide-upload {
-  margin-bottom: 20px;
-  ::v-deep .el-upload--picture-card {
-    width: 100%;
-  }
-}
+    .editor-slide-upload {
+        margin-bottom: 20px;
+
+        ::v-deep .el-upload--picture-card {
+            width: 100%;
+        }
+    }
 </style>

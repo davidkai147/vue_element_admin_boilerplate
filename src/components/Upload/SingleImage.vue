@@ -3,11 +3,11 @@
     <el-upload
       :data="dataObj"
       :multiple="false"
-      :show-file-list="false"
       :on-success="handleImageSuccess"
+      :show-file-list="false"
+      action="https://httpbin.org/post"
       class="image-uploader"
       drag
-      action="https://httpbin.org/post"
     >
       <i class="el-icon-upload" />
       <div class="el-upload__text">
@@ -79,14 +79,17 @@ export default {
 
 <style lang="scss" scoped>
     @import "~@/styles/mixin.scss";
+
     .upload-container {
         width: 100%;
         position: relative;
         @include clearfix;
+
         .image-uploader {
             width: 60%;
             float: left;
         }
+
         .image-preview {
             width: 200px;
             height: 200px;
@@ -94,15 +97,18 @@ export default {
             border: 1px dashed #d9d9d9;
             float: left;
             margin-left: 50px;
+
             .image-preview-wrapper {
                 position: relative;
                 width: 100%;
                 height: 100%;
+
                 img {
                     width: 100%;
                     height: 100%;
                 }
             }
+
             .image-preview-action {
                 position: absolute;
                 width: 100%;
@@ -119,10 +125,12 @@ export default {
                 cursor: pointer;
                 text-align: center;
                 line-height: 200px;
+
                 .el-icon-delete {
                     font-size: 36px;
                 }
             }
+
             &:hover {
                 .image-preview-action {
                     opacity: 1;

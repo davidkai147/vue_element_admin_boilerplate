@@ -1,17 +1,17 @@
 <template>
-  <div :class="{fullscreen:fullscreen}" class="tinymce-container" :style="{width:containerWidth}">
+  <div :class="{fullscreen:fullscreen}" :style="{width:containerWidth}" class="tinymce-container">
     <textarea :id="tinymceId" class="tinymce-textarea" />
     <div class="editor-custom-btn-container">
-      <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK" />
+      <editorImage class="editor-upload-btn" color="#1890ff" @successCBK="imageSuccessCBK" />
     </div>
   </div>
 </template>
 
 <script>
 /**
- * docs:
- * https://panjiachen.github.io/vue-element-admin-site/feature/component/rich-editor.html#tinymce
- */
+     * docs:
+     * https://panjiachen.github.io/vue-element-admin-site/feature/component/rich-editor.html#tinymce
+     */
 import editorImage from './components/EditorImage'
 import plugins from './plugins'
 import toolbar from './toolbar'
@@ -211,37 +211,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tinymce-container {
-  position: relative;
-  line-height: normal;
-}
-
-.tinymce-container {
-  ::v-deep {
-    .mce-fullscreen {
-      z-index: 10000;
+    .tinymce-container {
+        position: relative;
+        line-height: normal;
     }
-  }
-}
 
-.tinymce-textarea {
-  visibility: hidden;
-  z-index: -1;
-}
+    .tinymce-container {
+        ::v-deep {
+            .mce-fullscreen {
+                z-index: 10000;
+            }
+        }
+    }
 
-.editor-custom-btn-container {
-  position: absolute;
-  right: 4px;
-  top: 4px;
-  /*z-index: 2005;*/
-}
+    .tinymce-textarea {
+        visibility: hidden;
+        z-index: -1;
+    }
 
-.fullscreen .editor-custom-btn-container {
-  z-index: 10000;
-  position: fixed;
-}
+    .editor-custom-btn-container {
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        /*z-index: 2005;*/
+    }
 
-.editor-upload-btn {
-  display: inline-block;
-}
+    .fullscreen .editor-custom-btn-container {
+        z-index: 10000;
+        position: fixed;
+    }
+
+    .editor-upload-btn {
+        display: inline-block;
+    }
 </style>

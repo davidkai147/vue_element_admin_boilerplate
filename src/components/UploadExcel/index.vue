@@ -1,9 +1,15 @@
 <template>
   <div>
-    <input ref="excel-upload-input" class="excel-upload-input" type="file" accept=".xlsx, .xls" @change="handleClick">
-    <div class="drop" @drop="handleDrop" @dragover="handleDragover" @dragenter="handleDragover">
+    <input
+      ref="excel-upload-input"
+      accept=".xlsx, .xls"
+      class="excel-upload-input"
+      type="file"
+      @change="handleClick"
+    >
+    <div class="drop" @dragenter="handleDragover" @dragover="handleDragover" @drop="handleDrop">
       Drop excel file here or
-      <el-button :loading="loading" style="margin-left:16px;" size="mini" type="primary" @click="handleUpload">
+      <el-button :loading="loading" size="mini" style="margin-left:16px;" type="primary" @click="handleUpload">
         Browse
       </el-button>
     </div>
@@ -15,8 +21,8 @@ import XLSX from 'xlsx'
 
 export default {
   props: {
-    beforeUpload: Function, // eslint-disable-line
-    onSuccess: Function// eslint-disable-line
+            beforeUpload: Function, // eslint-disable-line
+            onSuccess: Function// eslint-disable-line
   },
   data() {
     return {
@@ -119,20 +125,21 @@ export default {
 </script>
 
 <style scoped>
-.excel-upload-input{
-  display: none;
-  z-index: -9999;
-}
-.drop{
-  border: 2px dashed #bbb;
-  width: 600px;
-  height: 160px;
-  line-height: 160px;
-  margin: 0 auto;
-  font-size: 24px;
-  border-radius: 5px;
-  text-align: center;
-  color: #bbb;
-  position: relative;
-}
+    .excel-upload-input {
+        display: none;
+        z-index: -9999;
+    }
+
+    .drop {
+        border: 2px dashed #bbb;
+        width: 600px;
+        height: 160px;
+        line-height: 160px;
+        margin: 0 auto;
+        font-size: 24px;
+        border-radius: 5px;
+        text-align: center;
+        color: #bbb;
+        position: relative;
+    }
 </style>
