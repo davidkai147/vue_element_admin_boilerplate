@@ -8,7 +8,6 @@
       class="login-form"
       label-position="left"
     >
-
       <div class="title-container">
         <h3 class="title">
           {{ $t('login.title') }}
@@ -39,10 +38,10 @@
           <el-input
             :key="passwordType"
             ref="password"
+            v-model="loginForm.password"
             :placeholder="$t('login.password')"
             :type="passwordType"
             autocomplete="on"
-            v-model="loginForm.password"
             name="password"
             tabindex="2"
             @blur="capsTooltip = false"
