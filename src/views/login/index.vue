@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import { validUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 
 export default {
@@ -76,11 +75,11 @@ export default {
   components: { LangSelect },
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
-      } else {
-        callback()
-      }
+      // if (!validUsername(value)) {
+      //   callback(new Error('Please enter the correct user name'))
+      // } else {
+      callback()
+      // }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
@@ -151,6 +150,10 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
+              this.$message({
+                message: 'Đăng nhập thành công',
+                type: 'success'
+              })
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
               this.loading = false
             })
