@@ -1,6 +1,7 @@
 import { getInfo, login, logout } from '@/api/user'
 import { getToken, removeToken, setToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
+import * as MUTATIONS from '@/enums/mutations'
 
 const state = {
   token: getToken(),
@@ -11,19 +12,19 @@ const state = {
 }
 
 const mutations = {
-  SET_TOKEN: (state, token) => {
+  [MUTATIONS.SET_TOKEN](state, token) {
     state.token = token
   },
-  SET_INTRODUCTION: (state, introduction) => {
+  [MUTATIONS.SET_INTRODUCTION](state, introduction) {
     state.introduction = introduction
   },
-  SET_NAME: (state, name) => {
+  [MUTATIONS.SET_NAME](state, name) {
     state.name = name
   },
-  SET_AVATAR: (state, avatar) => {
+  [MUTATIONS.SET_AVATAR](state, avatar) {
     state.avatar = avatar
   },
-  SET_ROLES: (state, roles) => {
+  [MUTATIONS.SET_ROLES](state, roles) {
     state.roles = roles
   }
 }
@@ -35,7 +36,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
-        commit('SET_TOKEN', data.token)
+        commit(MUTATIONS.SET_TOKEN, data.token)
         setToken(data.token)
         resolve()
       }).catch(error => {
@@ -61,10 +62,10 @@ const actions = {
           reject('getInfo: roles must be a non-null array!')
         }
 
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        commit('SET_INTRODUCTION', introduction)
+        commit(MUTATIONS.SET_ROLES, roles)
+        commit(MUTATIONS.SET_NAME, name)
+        commit(MUTATIONS.SET_AVATAR, avatar)
+        commit(MUTATIONS.SET_INTRODUCTION, introduction)
         resolve(data)
       }).catch(error => {
         reject(error)
@@ -76,8 +77,8 @@ const actions = {
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
-        commit('SET_TOKEN', '')
-        commit('SET_ROLES', [])
+        commit(MUTATIONS.SET_TOKEN, '')
+        commit(MUTATIONS.SET_ROLES, [])
         removeToken()
         resetRouter()
 
@@ -94,8 +95,8 @@ const actions = {
   // remove token
   resetToken({ commit }) {
     return new Promise(resolve => {
-      commit('SET_TOKEN', '')
-      commit('SET_ROLES', [])
+      commit(MUTATIONS.SET_TOKEN, '')
+      commit(MUTATIONS.SET_ROLES, [])
       removeToken()
       resolve()
     })
@@ -105,7 +106,7 @@ const actions = {
   async changeRoles({ commit, dispatch }, role) {
     const token = role + '-token'
 
-    commit('SET_TOKEN', token)
+    commit(MUTATIONS.SET_TOKEN, token)
     setToken(token)
 
     const { roles } = await dispatch('getInfo')

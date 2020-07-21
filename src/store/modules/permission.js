@@ -1,4 +1,5 @@
 import { asyncRoutes, constantRoutes } from '@/router'
+import * as MUTATIONS from '@/enums/mutations'
 
 /**
  * Use meta.role to determine if the current user has permission
@@ -40,7 +41,7 @@ const state = {
 }
 
 const mutations = {
-  SET_ROUTES: (state, routes) => {
+  [MUTATIONS.SET_ROUTES](state, routes) {
     state.addRoutes = routes
     state.routes = constantRoutes.concat(routes)
   }
@@ -55,7 +56,7 @@ const actions = {
       } else {
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
       }
-      commit('SET_ROUTES', accessedRoutes)
+      commit(MUTATIONS.SET_ROUTES, accessedRoutes)
       resolve(accessedRoutes)
     })
   }
