@@ -96,7 +96,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     name: 'ErrorPages',
     meta: {
-      title: 'Error Pages',
+      title: 'errorPages',
       icon: '404'
     },
     children: [
