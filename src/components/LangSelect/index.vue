@@ -4,17 +4,11 @@
       <svg-icon class-name="international-icon" icon-class="language" />
     </div>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item :disabled="language==='zh'" command="zh">
-        中文
+      <el-dropdown-item :disabled="language==='vi'" command="vi">
+        {{ $t('lang.vi') }}
       </el-dropdown-item>
       <el-dropdown-item :disabled="language==='en'" command="en">
-        English
-      </el-dropdown-item>
-      <el-dropdown-item :disabled="language==='es'" command="es">
-        Español
-      </el-dropdown-item>
-      <el-dropdown-item :disabled="language==='ja'" command="ja">
-        日本語
+        {{ $t('lang.en') }}
       </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
@@ -32,7 +26,7 @@ export default {
       this.$i18n.locale = lang
       this.$store.dispatch('app/setLanguage', lang)
       this.$message({
-        message: 'Switch Language Success',
+        message: this.$t('lang.change_success'),
         type: 'success'
       })
     }
