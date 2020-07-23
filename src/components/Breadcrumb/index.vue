@@ -13,7 +13,7 @@
 
 <script>
 import { generateTitle } from '@/utils/i18n'
-import pathToRegexp from 'path-to-regexp'
+import * as pathToRegexp from 'path-to-regexp'
 
 export default {
   data() {
