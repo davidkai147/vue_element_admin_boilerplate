@@ -6,6 +6,7 @@ import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 import Element from 'element-ui'
 import './styles/element-variables.scss'
 import '@/styles/index.scss' // global css
+import './lang/validation'
 import i18n from './lang' // internationalization
 import App from './App'
 import store from './store'
@@ -45,6 +46,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  i18n,
+  i18n: i18n,
   render: h => h(App)
 })
