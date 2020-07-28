@@ -1,21 +1,30 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import Cookies from 'js-cookie'
-import elementEnLocale from 'element-ui/lib/locale/lang/en' // element-ui lang
-import elementViLocale from 'element-ui/lib/locale/lang/vi' // element-ui lang
+import validationMessagesEnglish from 'vee-validate/dist/locale/en'
+import validationMessagesVietnamese from 'vee-validate/dist/locale/vi'
 import enLocale from './en'
 import viLocale from './vi'
 
 Vue.use(VueI18n)
 
+const dictionary = {
+  en: {
+    url: 'The {_field_} is wrong format'
+  },
+  vi: {
+    url: '不正な形式になっています。'
+  }
+}
+
 const messages = {
   en: {
     ...enLocale,
-    ...elementEnLocale
+    validation: { ...validationMessagesEnglish.messages, ...dictionary.en }
   },
   vi: {
     ...viLocale,
-    ...elementViLocale
+    validation: { ...validationMessagesVietnamese.messages, ...dictionary.vi }
   }
 }
 
@@ -39,7 +48,8 @@ const i18n = new VueI18n({
   // options: en | vi
   locale: getLanguage(),
   // set locale messages
-  messages
+  messages,
+  fallbackLocale: getLanguage()
 })
 
 export default i18n
